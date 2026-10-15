@@ -764,3 +764,10 @@ textarea.form-control-custom {
 .issue-item {
     animation: fadeIn 0.3s ease;
 }
+
+/* Keep dashboard controls and issue text usable on narrow screens. */
+.main-content > * { min-width: 0; }
+.top-nav { flex-wrap: wrap; gap: 12px; }
+.nav-center { flex-wrap: wrap; }
+.issue-title, .detail-value { overflow-wrap: anywhere; }
+@media (max-width: 576px) { .main-content { padding: 12px; gap: 12px; } .top-nav { padding: 12px; } }

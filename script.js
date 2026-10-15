@@ -63,7 +63,14 @@ function saveToStorage(key, data) {
 
 function getFromStorage(key) {
     const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
+    if (!data) return [];
+    try {
+        const value = JSON.parse(data);
+        return Array.isArray(value) ? value : [];
+    } catch {
+        console.warn('The saved demo data could not be read.');
+        return [];
+    }
 }
 
 function seedDatabase() {
@@ -143,7 +150,8 @@ function updateStatus() {
 
 
 function populatePeopleDropdown() {
-    const people = getFromStorage('people');
+    const storedPeople = getFromStorage('people');
+    const people = storedPeople.length ? storedPeople : PEOPLE;
     const source = people.length > 0 ? people : PEOPLE;// fallback to hardcoded data if storage is empty
     const dropdown = document.getElementById('assignedTo');
     if (!dropdown) return;
@@ -227,7 +235,8 @@ function initNavigator() {
 
 function loadNavigatorData() {
     const bugs = getFromStorage('bugs');
-    const people = getFromStorage('people');
+    const storedPeople = getFromStorage('people');
+    const people = storedPeople.length ? storedPeople : PEOPLE;
     
     const bugsWithOverdue = applyOverdueLogic(bugs);
     
@@ -437,7 +446,8 @@ function openEditModal(id) {
     document.getElementById('edit-targetDate').value = bug.targetDate || '';
     document.getElementById('edit-actualDate').value = bug.actualDate || '';
     
-    const people = getFromStorage('people');
+    const storedPeople = getFromStorage('people');
+    const people = storedPeople.length ? storedPeople : PEOPLE;
     const dropdown = document.getElementById('edit-assignedTo');
     dropdown.innerHTML = '<option value="">Select team member...</option>';
     
