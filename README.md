@@ -6,6 +6,21 @@
 
 A browser-only issue tracker with a dashboard, issue creation and editing, assignee selection, search, filtering and local persistence.
 
+## Visual preview
+
+Actual Chromium browser captures of the running site. The dashboard uses the built-in ten-issue demonstration dataset. 
+
+![BugTracker — desktop browser screenshot](docs/screenshots/desktop.jpg)
+
+<details>
+<summary>Mobile browser preview</summary>
+
+<img src="docs/screenshots/mobile.jpg" alt="BugTracker — mobile browser screenshot" width="300">
+
+</details>
+
+Desktop: 1440 × 1000 · Mobile: 390 × 844. [Capture source and provenance](docs/screenshots/capture.json).
+
 ## Try it
 
 Run from the repository root:
@@ -47,3 +62,4 @@ Bootstrap is loaded from jsDelivr, so an internet connection is needed for the f
 ## Verification
 
 Browser checks cover login, sample data, issue creation, editing, filtering, persistence and responsive layout.
+
